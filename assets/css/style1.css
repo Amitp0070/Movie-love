@@ -1,0 +1,67 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.categories a {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Different color buttons */
+.btn-green {
+  background-color: #2dbf32;
+}
+
+.btn-red {
+  background-color: #ff2e2e;
+}
+
+.btn-yellow {
+  background-color: #d89d1d;
+}
+
+.btn-blue {
+  background-color: #2997ff;
+}
+
+/* Subcategory Styles */
+.subcategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.subcategories span {
+  display: inline-block;
+  background-color: #444;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.subcategories span:hover {
+  background-color: #ffcc00;
+  color: #000;
+}

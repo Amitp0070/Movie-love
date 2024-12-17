@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2d2d2d;
+            padding: 15px 20px;
+            /* Allows navbar to wrap on small screens */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex: 1 1 100%;
+            /* Ensures logo takes full width on small screens */
+        }
+
+        .ico {
+            color: #ffcc00;
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            padding-top: 10px;
+        }
+
+        .nav-links li a.active {
+            color: #ffcc00;
+        }
+
+        .nav-links li a:hover {
+            color: #ffcc00;
+        }
+
+        /* Updated Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #333;
+            border-radius: 30px;
+            padding: 5px 10px;
+            margin-right: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px 5px;
+            border-radius: 20px;
+            background-color: #444;
+            color: #fff;
+            font-size: 16px;
+            flex: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .search-bar input:focus {
+            background-color: #555;
+        }
+
+        .search-bar button {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 5px 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #ffaa00;
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Toggle Button Styling */
+        .toggle-btn {
+            display: none;
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .nav{
+            background-color: #555;
+            border-radius: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Responsive Design */
+
+        /* For Tablets and Small Screens */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .nav-links {
+                display: none;
+                /* Initially hide nav links */
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+                /* Show nav links when active */
+            }
+
+            .search-bar {
+                margin-top: 10px;
+                justify-content: center;
+            }
+
+            .toggle-btn {
+                display: block;
+                /* Show toggle button */
+            }
+        }
+
+        /* For Very Small Screens (Mobile) */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 5px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-links li a {
+                font-size: 0.9rem;
+            }
+
+            .search-bar input {
+                width: 70%;
+                padding: 5px;
+            }
+
+            .search-bar button {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo mb-2">
+            <span class="veg">VEG</span><span class="ico">A</span><span class="movies">MOVIES</span>
+        </div>
+
+        <!-- Toggle Button -->
+        <button class="toggle-btn">☰</button>
+
+        <div class="nav">
+
+            <ul class="nav-links">
+                <li><a href="#" class="active" id="active-link"><span class="icon">🖥️</span> MOVIES 2024</a></li>
+                <li><a href="#"><span class="icon">▶️</span> BOLLYWOOD MOVIES</a></li>
+                <li><a href="#"><span class="icon">🎧</span> HOLLYWOOD MOVIES</a></li>
+                <li><a href="#"><span class="icon">🔗</span> SOUTH MOVIES</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search for movies...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const links = document.querySelectorAll('.nav-links li a');
+        const activeLink = document.getElementById('active-link');
+
+        links.forEach(link => {
+            link.addEventListener('mouseover', () => {
+                if (link !== activeLink) {
+                    activeLink.classList.remove('active'); // Temporarily remove active class
+                }
+            });
+
+            link.addEventListener('mouseout', () => {
+                activeLink.classList.add('active'); // Restore active class on mouse out
+            });
+        });
+
+        // Toggle the navbar links on small screens
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
