@@ -1,0 +1,146 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    .movie-detail-container {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Thumbnail Image */
+    .movie-thumbnail img {
+        object-fit: cover;
+        width: 100%;
+        max-height: 500px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .movie-thumbnail img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Movie Title */
+    .movie-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Movie Description */
+    .movie-description {
+        font-size: 1.2rem;
+        color: #555;
+        line-height: 1.6;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .movie-description:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    /* Download Button */
+    .btn-download {
+        background-color: #2997ff;
+        padding: 12px 24px;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 50px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .btn-download:hover {
+        background-color: #1f76d1;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back Button */
+    .back-btn {
+        margin-top: 30px;
+        background-color: #6c757d;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .back-btn:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .movie-detail-container {
+            align-items: center;
+        }
+
+        .movie-thumbnail img {
+            max-height: 400px;
+        }
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Movie Details -->
+    <div class="movie-detail-container">
+        <!-- Movie Thumbnail -->
+        <div class="movie-thumbnail">
+            {% if movie.image %}
+                <img src="{{ movie.thumbnail_video_link }}" alt="{{ movie.title }}">
+            {% else %}
+                <img src="{{ movie.image }}" alt="Default Thumbnail">
+            {% endif %}
+        </div>
+
+        <!-- Movie Title -->
+        <div class="movie-title">
+            <h1>{{ movie.title }}</h1>
+        </div>
+
+        <!-- Movie Description -->
+        <div class="movie-description">
+            <p>{{ movie.description }}</p>
+        </div>
+
+        <!-- Download Button -->
+        {% if movie.download_link %}
+            <a href="{{ movie.download_link }}" class="btn-download" target="_blank">
+                Download Movie
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'home' %}" class="back-btn">Back to Movies</a>
+</div>
+{% endblock content %}
