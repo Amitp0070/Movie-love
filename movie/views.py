@@ -3,11 +3,11 @@ from .models import Movies, Categories
 from django.core.paginator import Paginator
 
 def home(request):
-    movie = Movies.objects.all()
+    movie = Movies.objects.all().order_by("-create_at")
     category = Categories.objects.all().order_by('title')
     
     # Paginate movies with 10 movies per page
-    paginator = Paginator(movie, 8)
+    paginator = Paginator(movie, 12)
     page_number = request.GET.get('page')
     movies = paginator.get_page(page_number)
 
@@ -15,4 +15,5 @@ def home(request):
 
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movies, id=movie_id)
-    return render(request, 'components/movie_detail.html', {'movie': movie})
+    category = Categories.objects.all().order_by('title')
+    return render(request, 'components/movie_detail.html', {'movie': movie, 'category': category})
